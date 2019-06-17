@@ -38,7 +38,6 @@ for _ in 1...100 {
     }
     let scaledNegatedGrad = grad * -0.1
     guess = guess + scaledNegatedGrad
-    print(guess)
 }
 
 print(trilaterationError(points: points, distances: distances, guess: guess)) // Expected to be close to zero
