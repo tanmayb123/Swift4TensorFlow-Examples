@@ -31,6 +31,11 @@ struct TrilaterationReferences: Differentiable {
     struct ReferenceCoordinate: Differentiable {
         var location: Coordinate
         var expectedDistance: Tensor<Float>
+        
+        init(location: Coordinate, expectedDistance: Float) {
+            self.location = location
+            self.expectedDistance = Tensor(expectedDistance)
+        }
     }
     
     var ref1: ReferenceCoordinate
@@ -49,13 +54,6 @@ struct TrilaterationReferences: Differentiable {
             .distance(to: ref3.location)
             .squaredError(expected: ref3.expectedDistance)
         return error1 + error2 + error3
-    }
-}
-
-extension TrilaterationReferences.ReferenceCoordinate {
-    init(location: Coordinate, expectedDistance: Float) {
-        self.location = location
-        self.expectedDistance = Tensor(expectedDistance)
     }
 }
 
