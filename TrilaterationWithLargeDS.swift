@@ -39,9 +39,15 @@ struct TrilaterationReferences: Differentiable {
     
     @differentiable
     func error(for guess: Coordinate) -> Tensor<Float> {
-        let error1 = guess.distance(to: ref1.location).squaredError(expected: ref1.expectedDistance)
-        let error2 = guess.distance(to: ref2.location).squaredError(expected: ref2.expectedDistance)
-        let error3 = guess.distance(to: ref3.location).squaredError(expected: ref3.expectedDistance)
+        let error1 = guess
+            .distance(to: ref1.location)
+            .squaredError(expected: ref1.expectedDistance)
+        let error2 = guess
+            .distance(to: ref2.location)
+            .squaredError(expected: ref2.expectedDistance)
+        let error3 = guess
+            .distance(to: ref3.location)
+            .squaredError(expected: ref3.expectedDistance)
         return error1 + error2 + error3
     }
 }
